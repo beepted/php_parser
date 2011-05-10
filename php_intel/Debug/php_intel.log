@@ -1,0 +1,20 @@
+﻿Build started 10/05/2011 15:05:07.
+     1>Project "C:\Users\Kerry\Desktop\php_parser\php_intel\php_intel.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\php_intel.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt zend_language_parser.c
+         zend_language_parser.c
+     1>c:\users\kerry\desktop\php_parser\php_intel\zend_language_parser.c(3023): warning C4065: switch statement contains 'default' but no 'case' labels
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt zend_language_scanner.c
+         zend_language_scanner.c
+     1>c:\users\kerry\desktop\php_parser\php_intel\zend_language_scanner.c(603): error C2065: 'lines' : undeclared identifier
+     1>c:\users\kerry\desktop\php_parser\php_intel\zend_language_scanner.c(1885): warning C4013: 'exit' undefined; assuming extern returning int
+     1>c:\users\kerry\desktop\php_parser\php_intel\zend_language_scanner.c(1948): warning C4013: 'malloc' undefined; assuming extern returning int
+     1>c:\users\kerry\desktop\php_parser\php_intel\zend_language_scanner.c(1966): warning C4013: 'realloc' undefined; assuming extern returning int
+     1>c:\users\kerry\desktop\php_parser\php_intel\zend_language_scanner.c(1976): warning C4013: 'free' undefined; assuming extern returning int
+     1>Done Building Project "C:\Users\Kerry\Desktop\php_parser\php_intel\php_intel.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.05

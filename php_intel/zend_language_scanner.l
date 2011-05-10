@@ -1,0 +1,136 @@
+%{
+#include "zend_language_parser.h"
+extern int yylval;
+%}
+
+%%
+
+".*\n" {++lines;}
+"" {return T_REQUIRE_ONCE;}
+"" {return T_REQUIRE;}
+"" {return T_EVAL;}
+"" {return T_INCLUDE_ONCE;}
+"" {return T_INCLUDE;}
+"" {return T_LOGICAL_OR;}
+"" {return T_LOGICAL_XOR;}
+"" {return T_LOGICAL_AND;}
+"" {return T_PRINT;}
+"" {return T_SR_EQUAL;}
+"" {return T_SL_EQUAL;}
+"" {return T_XOR_EQUAL;}
+"" {return T_OR_EQUAL;}
+"" {return T_AND_EQUAL;}
+"" {return T_MOD_EQUAL;}
+"" {return T_CONCAT_EQUAL;}
+"" {return T_DIV_EQUAL;}
+"" {return T_MUL_EQUAL;}
+"" {return T_MINUS_EQUAL;}
+"" {return T_PLUS_EQUAL;}
+"" {return T_BOOLEAN_OR;}
+"" {return T_BOOLEAN_AND;}
+"" {return T_IS_NOT_IDENTICAL;}
+"" {return T_IS_IDENTICAL;}
+"" {return T_IS_NOT_EQUAL;}
+"" {return T_IS_EQUAL;}
+"" {return T_IS_GREATER_OR_EQUAL;}
+"" {return T_IS_SMALLER_OR_EQUAL;}
+"" {return T_SR;}
+"" {return T_SL;}
+"" {return T_INSTANCEOF;}
+"" {return T_UNSET_CAST;}
+"" {return T_BOOL_CAST;}
+"" {return T_OBJECT_CAST;}
+"" {return T_ARRAY_CAST;}
+"" {return T_STRING_CAST;}
+"" {return T_DOUBLE_CAST;}
+"" {return T_INT_CAST;}
+"" {return T_DEC;}
+"" {return T_INC;}
+"" {return T_CLONE;}
+"" {return T_NEW;}
+"" {return T_EXIT;}
+"" {return T_IF;}
+"" {return T_ELSEIF;}
+"" {return T_ELSE;}
+"" {return T_ENDIF;}
+"" {return T_LNUMBER;}
+"" {return T_DNUMBER;}
+"" {return T_STRING;}
+"" {return T_STRING_VARNAME;}
+"" {return T_VARIABLE;}
+"" {return T_NUM_STRING;}
+"" {return T_INLINE_HTML;}
+"" {return T_CHARACTER;}
+"" {return T_BAD_CHARACTER;}
+"" {return T_ENCAPSED_AND_WHITESPACE;}
+"" {return T_CONSTANT_ENCAPSED_STRING;}
+"" {return T_ECHO;}
+"" {return T_DO;}
+"" {return T_WHILE;}
+"" {return T_ENDWHILE;}
+"" {return T_FOR;}
+"" {return T_ENDFOR;}
+"" {return T_FOREACH;}
+"" {return T_ENDFOREACH;}
+"" {return T_DECLARE;}
+"" {return T_ENDDECLARE;}
+"" {return T_AS;}
+"" {return T_SWITCH;}
+"" {return T_ENDSWITCH;}
+"" {return T_CASE;}
+"" {return T_DEFAULT;}
+"" {return T_BREAK;}
+"" {return T_CONTINUE;}
+"" {return T_GOTO;}
+"" {return T_FUNCTION;}
+"" {return T_CONST;}
+"" {return T_RETURN;}
+"" {return T_TRY;}
+"" {return T_CATCH;}
+"" {return T_THROW;}
+"" {return T_USE;}
+"" {return T_GLOBAL;}
+"" {return T_PUBLIC;}
+"" {return T_PROTECTED;}
+"" {return T_PRIVATE;}
+"" {return T_FINAL;}
+"" {return T_ABSTRACT;}
+"" {return T_STATIC;}
+"" {return T_VAR;}
+"" {return T_UNSET;}
+"" {return T_ISSET;}
+"" {return T_EMPTY;}
+"" {return T_HALT_COMPILER;}
+"" {return T_CLASS;}
+"" {return T_INTERFACE;}
+"" {return T_EXTENDS;}
+"" {return T_IMPLEMENTS;}
+"" {return T_OBJECT_OPERATOR;}
+"" {return T_DOUBLE_ARROW;}
+"" {return T_LIST;}
+"" {return T_ARRAY;}
+"" {return T_CLASS_C;}
+"" {return T_METHOD_C;}
+"" {return T_FUNC_C;}
+"" {return T_LINE;}
+"" {return T_FILE;}
+"" {return T_COMMENT;}
+"" {return T_DOC_COMMENT;}
+"" {return T_OPEN_TAG;}
+"" {return T_OPEN_TAG_WITH_ECHO;}
+"" {return T_CLOSE_TAG;}
+"" {return T_WHITESPACE;}
+"" {return T_START_HEREDOC;}
+"" {return T_END_HEREDOC;}
+"" {return T_DOLLAR_OPEN_CURLY_BRACES;}
+"" {return T_CURLY_OPEN;}
+"" {return T_PAAMAYIM_NEKUDOTAYIM;}
+"" {return T_NAMESPACE;}
+"" {return T_NS_C;}
+"" {return T_DIR;}
+"" {return T_NS_SEPARATOR;}
+%%
+#ifndef yywrap
+yywrap()
+{ return 1; }
+#endif

@@ -27,14 +27,21 @@
  *
  */
 
-
+/*
 #define YYERROR_VERBOSE
 #define YYSTYPE znode
 #ifdef ZTS
 # define YYPARSE_PARAM tsrm_ls
 # define YYLEX_PARAM tsrm_ls
 #endif
+*/
 
+#include "sys_defs.h"
+
+#define YYSTYPE char
+
+int yylex(char *s);
+int yyerror(char *e);
 
 %}
 
@@ -306,10 +313,11 @@ unticked_function_declaration_statement:
 
 unticked_class_declaration_statement:
 		class_entry_type T_STRING extends_from
-	        implements_list
-	        '{'
-		   class_statement_list
-		'}' {printf("%s %s\n",$1 $2);}
+			{}
+			implements_list
+			'{'
+				class_statement_list
+			'}' {printf("class decl\n");}
 	|	interface_entry T_STRING
 			{}
 			interface_extends_list
@@ -320,7 +328,7 @@ unticked_class_declaration_statement:
 
 
 class_entry_type:
-		T_CLASS			{printf("class entry type:%s\n",$1);}
+		T_CLASS			{printf("class entry type\n");}
 	|	T_ABSTRACT T_CLASS {}
 	|	T_TRAIT {}
 	|	T_FINAL T_CLASS {}
@@ -1085,3 +1093,12 @@ class_constant:
  * indent-tabs-mode: t
  * End:
  */
+int yylex(char *s)
+{
+  getchar();
+  return T_CLASS;
+}
+int yyerror(char *e)
+{
+  return 0;
+}
