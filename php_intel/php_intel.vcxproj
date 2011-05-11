@@ -79,15 +79,18 @@
     </ClCompile>
     <ClCompile Include="zend_language_parser.c">
       <CallingConvention Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Cdecl</CallingConvention>
-      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
     </ClCompile>
-    <ClCompile Include="zend_language_scanner.c" />
+    <ClCompile Include="zend_language_scanner.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="zend_language_parser.y" />
     <None Include="zend_language_scanner.l" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="parser_cb.h" />
     <ClInclude Include="sys_defs.h" />
     <ClInclude Include="zend_language_parser.h" />
   </ItemGroup>

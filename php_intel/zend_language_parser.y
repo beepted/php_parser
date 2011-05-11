@@ -1,3 +1,10 @@
+/* a more advanced semantic type */
+%union
+{
+  int   id;
+  char* val;
+}
+
 %{
 /*
    +----------------------------------------------------------------------+
@@ -27,26 +34,17 @@
  *
  */
 
-/*
-#define YYERROR_VERBOSE
-#define YYSTYPE znode
-#ifdef ZTS
-# define YYPARSE_PARAM tsrm_ls
-# define YYLEX_PARAM tsrm_ls
-#endif
-*/
 
 #include "sys_defs.h"
+#include "zend_language_parser.h"
 
-#define YYSTYPE char
-
-int yylex(char *s);
+#define YYDEBUG 1
+ 
+extern int yylex();
 int yyerror(char *e);
 
 %}
 
-%pure_parser
-%expect 2
 
 %left T_INCLUDE T_INCLUDE_ONCE T_EVAL T_REQUIRE T_REQUIRE_ONCE
 %left ','
@@ -307,31 +305,32 @@ is_reference:
 
 
 unticked_function_declaration_statement:
-		function is_reference T_STRING {}
-			'(' parameter_list ')' '{' inner_statement_list '}' {}
+		function is_reference T_STRING 
+			'(' parameter_list ')' '{' inner_statement_list '}' 
+			{ printf("HERE%s\n",$<val>3); }
 ;
 
 unticked_class_declaration_statement:
 		class_entry_type T_STRING extends_from
-			{}
 			implements_list
 			'{'
 				class_statement_list
-			'}' {printf("class decl\n");}
+			'}'
+			{ printf("class:%s\n",$<val>2); }
 	|	interface_entry T_STRING
-			{}
 			interface_extends_list
 			'{'
 				class_statement_list
-			'}' {}
+			'}' 
+			{ printf("interface:%s\n",$<val>2); }
 ;
 
 
 class_entry_type:
-		T_CLASS			{printf("class entry type\n");}
-	|	T_ABSTRACT T_CLASS {}
-	|	T_TRAIT {}
-	|	T_FINAL T_CLASS {}
+		T_CLASS			    {}
+	|	T_ABSTRACT T_CLASS  {}
+	|	T_TRAIT             {}
+	|	T_FINAL T_CLASS     {}
 ;
 
 extends_from:
@@ -618,7 +617,7 @@ member_modifier:
 class_variable_declaration:
 		class_variable_declaration ',' T_VARIABLE					{}
 	|	class_variable_declaration ',' T_VARIABLE '=' static_scalar	{}
-	|	T_VARIABLE						{}
+	|	T_VARIABLE						{printf("member variables:%s\n",$<val>1);}
 	|	T_VARIABLE '=' static_scalar	{}
 ;
 
@@ -1093,12 +1092,9 @@ class_constant:
  * indent-tabs-mode: t
  * End:
  */
-int yylex(char *s)
-{
-  getchar();
-  return T_CLASS;
-}
 int yyerror(char *e)
 {
+  printf(" error: %s", e);
+  getchar();
   return 0;
 }

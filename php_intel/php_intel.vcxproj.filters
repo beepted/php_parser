@@ -36,5 +36,8 @@
     <ClInclude Include="zend_language_parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="parser_cb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
