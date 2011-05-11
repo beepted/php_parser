@@ -162,16 +162,16 @@ ${id}             {return transfer_token(T_VARIABLE,1);}
 
 "/*"              { BEGIN(C_COMMENT); }
 <C_COMMENT>"*/"   { BEGIN(INITIAL); }
-<C_COMMENT>.      { ; }
-<C_COMMENT>\n|\r  { ; }
+<C_COMMENT>.      { printf("%c",yytext[0]); }
+<C_COMMENT>\n|\r  { printf("\n"); }
 
 "//"              { BEGIN(L_COMMENT); }
-<L_COMMENT>\n|\r  { BEGIN(INITIAL); }
-<L_COMMENT>.      { ; }
+<L_COMMENT>\n|\r  { printf("\n");BEGIN(INITIAL); }
+<L_COMMENT>.      { printf("%c",yytext[0]); }
 
 "#"               { BEGIN(H_COMMENT); }
-<H_COMMENT>\n|\r  { BEGIN(INITIAL); }
-<H_COMMENT>.      { ; }
+<H_COMMENT>\n|\r  { printf("\n");BEGIN(INITIAL); }
+<H_COMMENT>.      { printf("%c",yytext[0]); }
 
 
 [ \t] {;}
@@ -180,6 +180,7 @@ ${id}             {return transfer_token(T_VARIABLE,1);}
 
 
 %%
+
 int transfer_token(int id,char copy_value)
 {
   if(copy_value)
@@ -189,6 +190,7 @@ int transfer_token(int id,char copy_value)
   }
   return id;
 }
+
 #ifndef yywrap
 yywrap()
 { return 1; }

@@ -42,5 +42,5 @@ void main()
   freopen("debug.trace","w",stderr);
   yyin=fopen("mysql.class.php","r");
   yyparse();
-  
+  system("PAUSE");
 }

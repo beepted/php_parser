@@ -1464,11 +1464,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 137:
 YY_RULE_SETUP
-{ ; }
+{ printf("%c",yytext[0]); }
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
-{ ; }
+{ printf("\n"); }
 	YY_BREAK
 case 139:
 YY_RULE_SETUP
@@ -1476,11 +1476,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 140:
 YY_RULE_SETUP
-{ BEGIN(INITIAL); }
+{ printf("\n");BEGIN(INITIAL); }
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
-{ ; }
+{ printf("%c",yytext[0]); }
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
@@ -1488,11 +1488,11 @@ YY_RULE_SETUP
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
-{ BEGIN(INITIAL); }
+{ printf("\n");BEGIN(INITIAL); }
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
-{ ; }
+{ printf("%c",yytext[0]);; }
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
@@ -2399,6 +2399,7 @@ int main()
 	}
 #endif
 
+
 int transfer_token(int id,char copy_value)
 {
   if(copy_value)
@@ -2408,6 +2409,7 @@ int transfer_token(int id,char copy_value)
   }
   return id;
 }
+
 #ifndef yywrap
 yywrap()
 { return 1; }
